@@ -13,7 +13,7 @@
   },
   "autoload": {
     "psr-4": {
-      "cakeblog\\": "src"
+      "cakeblog\\": "./vendor/gwhitcher/cakeblog/src"
     }
   },
   "autoload-dev": {
