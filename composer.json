@@ -1,0 +1,25 @@
+{
+  "name": "gwhitcher/cakeblog",
+  "description": "An open source blog software. Written in PHP with the CakePHP framework.",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": ">=5.4",
+    "cakephp/cakephp": "~3.0",
+    "gwhitcher/cakeblog": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "PhotoGallery\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "CakeBlog\\Test\\": "tests",
+      "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+    }
+  }
+}
