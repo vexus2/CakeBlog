@@ -6,8 +6,8 @@ use Cake\Network\Exception\NotFoundException;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 
-class SidebarController extends AppController {
-
+class SidebarController extends AppController
+{
     public $helpers = ['Text'];
 
     public function initialize()
@@ -17,7 +17,8 @@ class SidebarController extends AppController {
         $this->loadComponent('RequestHandler');
     }
 
-    public function beforeFilter(Event $event) {
+    public function beforeFilter(Event $event)
+    {
         parent::beforeFilter($event);
         //LOAD LAYOUT
         $this->layout = 'admin';
@@ -25,12 +26,14 @@ class SidebarController extends AppController {
         $this->loadModel('Sidebar');
     }
 
-	public function sidebars() {
+    public function sidebars()
+    {
         $this->set('title_for_layout', 'Sidebars');
-        $this->set('sidebars', $this->Sidebar->find('all',array('order' => 'position ASC')));
+        $this->set('sidebars', $this->Sidebar->find('all', array('order' => 'position ASC')));
     }
 
-    public function sidebar_add() {
+    public function sidebar_add()
+    {
         $this->set('title_for_layout', 'Add Sidebar');
         $sidebar = $this->Sidebar->newEntity($this->request->data);
         if ($this->request->is('post')) {
@@ -43,13 +46,13 @@ class SidebarController extends AppController {
         $this->set('sidebar', $sidebar);
     }
 
-    public function sidebar_edit($id = null) {
+    public function sidebar_edit($id = null)
+    {
         $sidebar = $this->Sidebar->get($id);
         $this->set('title_for_layout', $sidebar->title);
         if (empty($sidebar)) {
             throw new NotFoundException('Could not find that sidebar item.');
-        }
-        else {
+        } else {
             $this->set(compact('sidebar'));
         }
         if ($this->request->is(['post', 'put'])) {
@@ -62,7 +65,8 @@ class SidebarController extends AppController {
         }
     }
 
-    public function sidebar_delete($id = null) {
+    public function sidebar_delete($id = null)
+    {
         $this->set('title_for_layout', 'Delete Sidebar Item');
         $this->request->allowMethod(['post', 'delete']);
 
@@ -72,8 +76,9 @@ class SidebarController extends AppController {
             return $this->redirect("".Configure::read('BASE_URL')."/admin/sidebars");
         }
     }
-	
-	public function sidebar_reorder() {
+    
+    public function sidebar_reorder()
+    {
         foreach ($_POST['item'] as $key => $value) {
             $sidebar_items = TableRegistry::get('Sidebar');
             $sidebar_item = $sidebar_items->find('all')->where(['id' => $value])->first();
@@ -81,6 +86,5 @@ class SidebarController extends AppController {
             $sidebar_items->save($sidebar_item);
         }
         exit();
-	}
-	
+    }
 }

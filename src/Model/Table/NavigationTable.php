@@ -6,7 +6,6 @@ use Cake\Validation\Validator;
 
 class NavigationTable extends Table
 {
-
     public function initialize(array $config)
     {
         $this->table('navigation');
@@ -18,5 +17,4 @@ class NavigationTable extends Table
             ->notEmpty('title', 'A title is required')
             ->notEmpty('url', 'A url is required');
     }
-
 }

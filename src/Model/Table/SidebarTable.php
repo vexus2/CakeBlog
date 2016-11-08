@@ -6,7 +6,6 @@ use Cake\Validation\Validator;
 
 class SidebarTable extends Table
 {
-
     public function initialize(array $config)
     {
         $this->table('sidebar');
@@ -18,5 +17,4 @@ class SidebarTable extends Table
             ->notEmpty('title', 'A title is required')
             ->notEmpty('body', 'A body is required');
     }
-
 }

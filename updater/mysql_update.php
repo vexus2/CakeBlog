@@ -9,6 +9,6 @@ $files = array_diff(scandir($mysql_dir, $mysql_order), array(".", ".."));
 foreach ($files as $file) {
     $contents = file_get_contents(''.$mysql_dir.'/'.$file.'');
     $sql = $contents;
-    mysqli_query($conn,$sql) or die(mysqli_error($conn));
+    mysqli_query($conn, $sql) or die(mysqli_error($conn));
 }
 mysqli_close($conn);

@@ -1,5 +1,6 @@
 <?php
-function show_captcha() {
+function show_captcha()
+{
     if (session_id() == "") {
         session_name("CAKEPHP");
         session_start();
@@ -15,7 +16,7 @@ function show_captcha() {
     $_SESSION['captcha']=$captchatext2;
 
 
-    if (file_exists($imgpath) ){
+    if (file_exists($imgpath)) {
         $im = imagecreatefromjpeg($imgpath);
         $grey = imagecolorallocate($im, 99, 99, 99);
         $font = $path.'/fonts/'.'TTWPGOTT.ttf';
@@ -24,15 +25,14 @@ function show_captcha() {
 
         header('Content-Type: image/jpeg');
         header("Cache-control: private, no-cache");
-        header ("Last-Modified: " . gmdate ("D, d M Y H:i:s") . " GMT");
+        header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
         header("Pragma: no-cache");
         imagejpeg($im);
 
         imagedestroy($im);
         ob_flush();
         flush();
-    }
-    else{
+    } else {
         echo 'captcha error';
         exit;
     }

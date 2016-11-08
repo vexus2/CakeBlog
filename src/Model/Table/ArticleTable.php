@@ -6,7 +6,6 @@ use Cake\Validation\Validator;
 
 class ArticleTable extends Table
 {
-
     public function initialize(array $config)
     {
         $this->table('articles');
@@ -19,5 +18,4 @@ class ArticleTable extends Table
             ->notEmpty('title', 'A title is required')
             ->notEmpty('description', 'A description is required');
     }
-
 }

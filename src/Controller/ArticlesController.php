@@ -6,8 +6,8 @@ use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
 use Cake\Utility\Inflector;
 
-class ArticlesController extends AppController {
-
+class ArticlesController extends AppController
+{
     public function initialize()
     {
         parent::initialize();
@@ -15,7 +15,8 @@ class ArticlesController extends AppController {
         $this->loadComponent('RequestHandler');
     }
 
-    public function beforeFilter(Event $event) {
+    public function beforeFilter(Event $event)
+    {
         parent::beforeFilter($event);
         //LOAD LAYOUT
         $this->layout = 'admin';
@@ -25,7 +26,8 @@ class ArticlesController extends AppController {
 
     public $helpers = ['Text'];
 
-	public function articles() {
+    public function articles()
+    {
         $this->set('title_for_layout', 'Articles');
         $this->paginate = [
             'limit' => 10,
@@ -38,18 +40,18 @@ class ArticlesController extends AppController {
         $this->set(compact('articles'));
     }
 
-    public function article_add() {
-		//LOAD CATEGORIES
-		$this->loadModel('Categories');
-		$categories = $this->Categories->find('list');
-		$this->set(compact('categories'));
+    public function article_add()
+    {
+        //LOAD CATEGORIES
+        $this->loadModel('Categories');
+        $categories = $this->Categories->find('list');
+        $this->set(compact('categories'));
 
         $this->set('title_for_layout', 'Add Article');
         $article = $this->Article->newEntity($this->request->data);
         if ($this->request->is('post')) {
             $article->slug = strtolower(Inflector::slug($article->title));
-            if(!empty($this->request->data['featured']['name']))
-            {
+            if (!empty($this->request->data['featured']['name'])) {
                 $file = $this->request->data['featured'];
                 move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/articles/featured/' . $file['name']);
                 $article->featured = $file['name'];
@@ -63,26 +65,25 @@ class ArticlesController extends AppController {
         $this->set('article', $article);
     }
 
-    public function article_edit($id = null) {
-		//LOAD CATEGORIES
-		$this->loadModel('Categories');
-		$categories = $this->Categories->find('list');
-		$this->set(compact('categories'));
+    public function article_edit($id = null)
+    {
+        //LOAD CATEGORIES
+        $this->loadModel('Categories');
+        $categories = $this->Categories->find('list');
+        $this->set(compact('categories'));
 
         $article = $this->Article->get($id);
         $this->set('title_for_layout', $article->title);
         $featured_image = $article->featured;
         if (empty($article)) {
             throw new NotFoundException('Could not find that article.');
-        }
-        else {
+        } else {
             $this->set(compact('article'));
         }
         if ($this->request->is(['post', 'put'])) {
             $this->Article->patchEntity($article, $this->request->data);
             $article->slug = strtolower(Inflector::slug($article->title));
-            if(!empty($this->request->data['featured']['name']))
-            {
+            if (!empty($this->request->data['featured']['name'])) {
                 $file = $this->request->data['featured'];
                 move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/articles/featured/' . $file['name']);
                 $article->featured = $file['name'];
@@ -97,7 +98,8 @@ class ArticlesController extends AppController {
         }
     }
 
-    public function article_delete($id = null) {
+    public function article_delete($id = null)
+    {
         $this->set('title_for_layout', 'Delete Article');
         $this->request->allowMethod(['post', 'delete']);
 
@@ -107,5 +109,4 @@ class ArticlesController extends AppController {
             return $this->redirect("".Configure::read('BASE_URL')."/admin/articles");
         }
     }
-
 }
