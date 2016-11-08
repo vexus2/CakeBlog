@@ -46,11 +46,11 @@ class PagesController extends AppController
     {
         $this->set('title_for_layout', 'Pages');
         $this->paginate = [
-             'limit' => 10,
-             'order' => [
-                 'Page.id' => 'desc'
-             ]
-         ];
+                'limit' => 10,
+                'order' => [
+                    'Page.id' => 'desc'
+                ]
+            ];
         $pages = $this->paginate($this->Page);
         $this->set(compact('pages'));
     }

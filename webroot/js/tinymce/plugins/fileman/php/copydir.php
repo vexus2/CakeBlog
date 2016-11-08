@@ -26,8 +26,8 @@ include 'functions.inc.php';
 verifyAction('COPYDIR');
 checkAccess('COPYDIR');
 
-$path = trim(empty($_POST['d'])?'':$_POST['d']);
-$newPath = trim(empty($_POST['n'])?'':$_POST['n']);
+$path = trim(empty($_POST['d']) ? '' : $_POST['d']);
+$newPath = trim(empty($_POST['n']) ? '' : $_POST['n']);
 verifyPath($path);
 verifyPath($newPath);
 

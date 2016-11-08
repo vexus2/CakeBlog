@@ -53,7 +53,7 @@ class ArticlesController extends AppController
             $article->slug = strtolower(Inflector::slug($article->title));
             if (!empty($this->request->data['featured']['name'])) {
                 $file = $this->request->data['featured'];
-                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/articles/featured/' . $file['name']);
+                move_uploaded_file($file['tmp_name'], WWW_ROOT.'img/articles/featured/'.$file['name']);
                 $article->featured = $file['name'];
             }
             if ($this->Article->save($article)) {
@@ -85,7 +85,7 @@ class ArticlesController extends AppController
             $article->slug = strtolower(Inflector::slug($article->title));
             if (!empty($this->request->data['featured']['name'])) {
                 $file = $this->request->data['featured'];
-                move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/articles/featured/' . $file['name']);
+                move_uploaded_file($file['tmp_name'], WWW_ROOT.'img/articles/featured/'.$file['name']);
                 $article->featured = $file['name'];
             } else {
                 $article->featured = $featured_image;

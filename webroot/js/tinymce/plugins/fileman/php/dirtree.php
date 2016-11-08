@@ -53,7 +53,7 @@ function GetDirs($path, $type)
             continue;
         }
         $tmp = getFilesNumber(fixPath($fullPath), $type);
-        $ret[$fullPath] = array('path'=>$fullPath,'files'=>$tmp['files'],'dirs'=>$tmp['dirs']);
+        $ret[$fullPath] = array('path'=>$fullPath, 'files'=>$tmp['files'], 'dirs'=>$tmp['dirs']);
         $sort[$fullPath] = $f;
     }
     natcasesort($sort);
@@ -64,13 +64,13 @@ function GetDirs($path, $type)
     }
 }
 
-$type = (empty($_GET['type'])?'':strtolower($_GET['type']));
+$type = (empty($_GET['type']) ? '' : strtolower($_GET['type']));
 if ($type != 'image' && $type != 'flash') {
     $type = '';
 }
 
 echo "[\n";
 $tmp = getFilesNumber(fixPath(getFilesPath()), $type);
-echo '{"p":"'.  mb_ereg_replace('"', '\\"', getFilesPath()).'","f":"'.$tmp['files'].'","d":"'.$tmp['dirs'].'"}';
+echo '{"p":"'.mb_ereg_replace('"', '\\"', getFilesPath()).'","f":"'.$tmp['files'].'","d":"'.$tmp['dirs'].'"}';
 GetDirs(getFilesPath(), $type);
 echo "\n]";

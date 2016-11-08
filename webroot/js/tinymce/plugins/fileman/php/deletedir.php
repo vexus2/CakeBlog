@@ -26,7 +26,7 @@ include 'functions.inc.php';
 verifyAction('DELETEDIR');
 checkAccess('DELETEDIR');
 
-$path = trim(empty($_GET['d'])?'':$_GET['d']);
+$path = trim(empty($_GET['d']) ? '' : $_GET['d']);
 verifyPath($path);
 
 if (is_dir(fixPath($path))) {
