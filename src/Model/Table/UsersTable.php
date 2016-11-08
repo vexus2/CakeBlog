@@ -7,13 +7,12 @@ use Cake\Validation\Validator;
 
 class UsersTable extends Table
 {
-
     public function initialize(array $config)
     {
         $this->table('users');
     }
-	
-	public function validationDefault(Validator $validator)
+    
+    public function validationDefault(Validator $validator)
     {
         return $validator
             ->notEmpty('username', 'A username is required')
@@ -24,5 +23,4 @@ class UsersTable extends Table
                 'message' => 'Please enter a valid role'
             ]);
     }
-
 }

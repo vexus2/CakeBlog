@@ -7,7 +7,6 @@ use Cake\Event\Event;
 
 class UsersController extends AppController
 {
-
     public function initialize()
     {
         parent::initialize();
@@ -20,7 +19,8 @@ class UsersController extends AppController
         $this->layout = 'admin';
     }
 
-    public function dashboard() {
+    public function dashboard()
+    {
         $this->set('title_for_layout', 'Dashboard');
         $this->layout = 'admin';
 
@@ -93,13 +93,13 @@ class UsersController extends AppController
         $this->set('user', $user);
     }
 
-    public function user_edit($id = null) {
+    public function user_edit($id = null)
+    {
         $user = $this->Users->get($id);
         $this->set('title_for_layout', $user->name);
         if (empty($user)) {
             throw new NotFoundException('Could not find that user.');
-        }
-        else {
+        } else {
             $this->set(compact('user'));
         }
 
@@ -113,7 +113,8 @@ class UsersController extends AppController
         }
     }
 
-    public function user_delete($id = null) {
+    public function user_delete($id = null)
+    {
         $this->request->allowMethod(['post', 'delete']);
 
         $user = $this->Users->get($id);
@@ -123,7 +124,8 @@ class UsersController extends AppController
         }
     }
 
-    public function users() {
+    public function users()
+    {
         $this->set('title_for_layout', 'Users');
         $this->loadModel('User');
         $this->paginate = [
@@ -135,5 +137,4 @@ class UsersController extends AppController
         $users = $this->paginate($this->User);
         $this->set(compact('users'));
     }
-
 }

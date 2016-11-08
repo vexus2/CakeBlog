@@ -1,6 +1,6 @@
 <?php
 /*
-  RoxyFileman - web based file manager. Ready to use with CKEditor, TinyMCE. 
+  RoxyFileman - web based file manager. Ready to use with CKEditor, TinyMCE.
   Can be easily integrated with any other WYSIWYG editor or CMS.
 
   Copyright (C) 2013, RoxyFileman.com - Lyubomir Arsov. All rights reserved.
@@ -29,18 +29,18 @@ header("Cache-Control: max-age=3600");
 verifyAction('GENERATETHUMB');
 checkAccess('GENERATETHUMB');
 
-$path = urldecode(empty($_GET['f'])?'':$_GET['f']);
+$path = urldecode(empty($_GET['f']) ? '' : $_GET['f']);
 verifyPath($path);
 
 @chmod(fixPath(dirname($path)), octdec(DIRPERMISSIONS));
 @chmod(fixPath($path), octdec(FILEPERMISSIONS));
 
-$w = intval(empty($_GET['width'])?'100':$_GET['width']);
-$h = intval(empty($_GET['height'])?'0':$_GET['height']);
+$w = intval(empty($_GET['width']) ? '100' : $_GET['width']);
+$h = intval(empty($_GET['height']) ? '0' : $_GET['height']);
 
 header('Content-type: '.RoxyFile::GetMIMEType(basename($path)));
-if($w && $h)
-  RoxyImage::CropCenter(fixPath($path), null, $w, $h);
-else 
-  RoxyImage::Resize(fixPath($path), null, $w, $h);
-?>
+if ($w && $h) {
+    RoxyImage::CropCenter(fixPath($path), null, $w, $h);
+} else {
+    RoxyImage::Resize(fixPath($path), null, $w, $h);
+}

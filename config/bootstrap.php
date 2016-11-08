@@ -195,4 +195,3 @@ DispatcherFactory::add('Routing');
 DispatcherFactory::add('ControllerFactory');
 
 include("cakeblog_config.php");
-

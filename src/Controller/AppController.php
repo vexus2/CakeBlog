@@ -52,7 +52,8 @@ class AppController extends Controller
         $this->set('current_user', $this->Auth->user());
     }
 
-    public function beforeFilter(Event $event) {
+    public function beforeFilter(Event $event)
+    {
         parent::beforeFilter($event);
         //LOAD LAYOUT
         $this->layout = Configure::read('cakeblog_theme');

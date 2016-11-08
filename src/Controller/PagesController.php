@@ -7,15 +7,16 @@ use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 use Cake\Utility\Inflector;
 
-class PagesController extends AppController {
-
+class PagesController extends AppController
+{
     public function initialize()
     {
         parent::initialize();
         $this->loadComponent('Paginator');
     }
 
-    public function beforeFilter(Event $event) {
+    public function beforeFilter(Event $event)
+    {
         parent::beforeFilter($event);
         /* AUTHENTICATION */
         $this->Auth->allow(['load_pages']);
@@ -25,7 +26,8 @@ class PagesController extends AppController {
         $this->loadModel('Page');
     }
 
-	public function load_pages($slug = null) {
+    public function load_pages($slug = null)
+    {
         $this->layout = Configure::read('cakeblog_theme');
         $pagetable = TableRegistry::get('Pages');
         $pages = $pagetable->find('all', array('conditions' => array('slug' => $slug)));
@@ -33,27 +35,28 @@ class PagesController extends AppController {
         $this->set('title_for_layout', $page->title);
         if (empty($page)) {
             throw new NotFoundException('Could not find a page with that name.');
-        }
-        else {
+        } else {
             $this->set(compact('page'));
         }
-		//RENDER THEME VIEW
-		$this->render(''.Configure::read('cakeblog_theme').'.load_pages');
-	}
-
-	 public function pages() {
-         $this->set('title_for_layout', 'Pages');
-         $this->paginate = [
-             'limit' => 10,
-             'order' => [
-                 'Page.id' => 'desc'
-             ]
-         ];
-         $pages = $this->paginate($this->Page);
-         $this->set(compact('pages'));
+        //RENDER THEME VIEW
+        $this->render(''.Configure::read('cakeblog_theme').'.load_pages');
     }
 
-    public function page_add() {
+    public function pages()
+    {
+        $this->set('title_for_layout', 'Pages');
+        $this->paginate = [
+                'limit' => 10,
+                'order' => [
+                    'Page.id' => 'desc'
+                ]
+            ];
+        $pages = $this->paginate($this->Page);
+        $this->set(compact('pages'));
+    }
+
+    public function page_add()
+    {
         $this->set('title_for_layout', 'Add Page');
         $page = $this->Page->newEntity($this->request->data);
         if ($this->request->is('post')) {
@@ -67,13 +70,13 @@ class PagesController extends AppController {
         $this->set('page', $page);
     }
 
-    public function page_edit($id = null) {
+    public function page_edit($id = null)
+    {
         $page = $this->Page->get($id);
         $this->set('title_for_layout', $page->title);
         if (empty($page)) {
             throw new NotFoundException('Could not find that page.');
-        }
-        else {
+        } else {
             $this->set(compact('page'));
         }
         if ($this->request->is(['post', 'put'])) {
@@ -87,7 +90,8 @@ class PagesController extends AppController {
         }
     }
 
-    public function page_delete($id = null) {
+    public function page_delete($id = null)
+    {
         $this->set('title_for_layout', 'Delete Page');
         $this->request->allowMethod(['post', 'delete']);
 
@@ -97,6 +101,4 @@ class PagesController extends AppController {
             return $this->redirect("".Configure::read('BASE_URL')."/admin/pages");
         }
     }
-	
-	
 }

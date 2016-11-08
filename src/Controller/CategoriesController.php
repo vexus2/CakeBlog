@@ -6,15 +6,16 @@ use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
 use Cake\Utility\Inflector;
 
-class CategoriesController extends AppController {
-
+class CategoriesController extends AppController
+{
     public function initialize()
     {
         parent::initialize();
         $this->loadComponent('Paginator');
     }
 
-    public function beforeFilter(Event $event) {
+    public function beforeFilter(Event $event)
+    {
         parent::beforeFilter($event);
         //LOAD LAYOUT
         $this->layout = 'admin';
@@ -22,7 +23,8 @@ class CategoriesController extends AppController {
         $this->loadModel('Category');
     }
    
-    public function categories() {
+    public function categories()
+    {
         $this->set('title_for_layout', 'Categories');
         $this->paginate = [
             'limit' => 10,
@@ -34,7 +36,8 @@ class CategoriesController extends AppController {
         $this->set(compact('categories'));
     }
 
-    public function category_add() {
+    public function category_add()
+    {
         $this->set('title_for_layout', 'Add Category');
         $category = $this->Category->newEntity($this->request->data);
         if ($this->request->is('post')) {
@@ -48,13 +51,13 @@ class CategoriesController extends AppController {
         $this->set('category', $category);
     }
 
-    public function category_edit($id = null) {
-		$category = $this->Category->get($id);
+    public function category_edit($id = null)
+    {
+        $category = $this->Category->get($id);
         $this->set('title_for_layout', $category->title);
         if (empty($category)) {
             throw new NotFoundException('Could not find that category.');
-        }
-        else {
+        } else {
             $this->set(compact('category'));
         }
         if ($this->request->is(['post', 'put'])) {
@@ -68,7 +71,8 @@ class CategoriesController extends AppController {
         }
     }
 
-    public function category_delete($id = null) {
+    public function category_delete($id = null)
+    {
         $this->set('title_for_layout', 'Delete Category');
         $this->request->allowMethod(['post', 'delete']);
         $category = $this->Category->get($id);
@@ -77,6 +81,4 @@ class CategoriesController extends AppController {
             return $this->redirect("".Configure::read('BASE_URL')."/admin/categories");
         }
     }
-	
-	
 }

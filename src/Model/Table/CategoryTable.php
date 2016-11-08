@@ -6,7 +6,6 @@ use Cake\Validation\Validator;
 
 class CategoryTable extends Table
 {
-
     public function initialize(array $config)
     {
         $this->table('categories');
@@ -20,5 +19,4 @@ class CategoryTable extends Table
         return $validator
             ->notEmpty('title', 'A title is required');
     }
-
 }

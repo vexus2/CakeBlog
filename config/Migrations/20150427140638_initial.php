@@ -252,7 +252,7 @@ class Initial extends AbstractMigration
         //CREATE NAVIGATION ITEMS
         $navigationitemsTable = TableRegistry::get('Navigation');
         $navigationitem = $navigationitemsTable->newEntity();
-        $navigationitem->parent_id = NULL;
+        $navigationitem->parent_id = null;
         $navigationitem->title = 'Home';
         $navigationitem->url = '';
         $navigationitem->target = '';
@@ -261,7 +261,7 @@ class Initial extends AbstractMigration
 
         $navigationitemsTable = TableRegistry::get('Navigation');
         $navigationitem = $navigationitemsTable->newEntity();
-        $navigationitem->parent_id = NULL;
+        $navigationitem->parent_id = null;
         $navigationitem->title = 'About';
         $navigationitem->url = '/about';
         $navigationitem->target = '';
@@ -270,7 +270,7 @@ class Initial extends AbstractMigration
 
         $navigationitemsTable = TableRegistry::get('Navigation');
         $navigationitem = $navigationitemsTable->newEntity();
-        $navigationitem->parent_id = NULL;
+        $navigationitem->parent_id = null;
         $navigationitem->title = 'Contact';
         $navigationitem->url = '/contact';
         $navigationitem->target = '';
