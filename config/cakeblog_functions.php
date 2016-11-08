@@ -20,8 +20,8 @@ function nav($menu_items, $child = false)
 {
     $output = '';
 
-    if (count($menu_items)>0) {
-        $output .= ($child === false) ? '<ul>' : '<ul>' ;
+    if (count($menu_items) > 0) {
+        $output .= ($child === false) ? '<ul>' : '<ul>';
 
         foreach ($menu_items as $nav_item) {
             if (!empty($nav_item['target'])) {

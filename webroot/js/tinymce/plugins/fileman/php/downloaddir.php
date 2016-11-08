@@ -48,6 +48,6 @@ if (!class_exists('ZipArchive')) {
         }
         register_shutdown_function('deleteTmp', $zipPath);
     } catch (Exception $ex) {
-        echo '<script>alert("'.  addslashes(t('E_CreateArchive')).'");</script>';
+        echo '<script>alert("'.addslashes(t('E_CreateArchive')).'");</script>';
     }
 }

@@ -26,8 +26,8 @@ include 'functions.inc.php';
 verifyAction('MOVEFILE');
 checkAccess('MOVEFILE');
 
-$path = trim(empty($_POST['f'])?'':$_POST['f']);
-$newPath = trim(empty($_POST['n'])?'':$_POST['n']);
+$path = trim(empty($_POST['f']) ? '' : $_POST['f']);
+$newPath = trim(empty($_POST['n']) ? '' : $_POST['n']);
 if (!$newPath) {
     $newPath = getFilesPath();
 }

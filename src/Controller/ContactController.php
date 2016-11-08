@@ -21,7 +21,7 @@ class ContactController extends AppController
     {
         $this->set('title_for_layout', 'Contact');
         if ($this->request->is('post')) {
-            if ($this->request->data['captcha']!=$_SESSION['captcha']) {
+            if ($this->request->data['captcha'] != $_SESSION['captcha']) {
                 $this->Flash->error(__('Please enter correct captcha code and try again.', true));
             } else {
                 //SEND EMAIL
